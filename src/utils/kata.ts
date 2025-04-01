@@ -3,7 +3,12 @@
 export function add(numbers: string): number {
   if (numbers === "") return 0;
 
-  const newArray = numbers.split(/,|\n/).map(Number);
+  const newArray: number[] = numbers.split(/,|\n/).map(Number);
+  console.log(newArray);
 
-  return newArray.reduce((sum: number, num: number) => sum + num, 0);
+  const sum: number = newArray.reduce((sum, num) => sum + num, 0);
+  console.log(sum);
+  return sum;
 }
+
+add("1,2,3");
