@@ -17,4 +17,9 @@ describe("test string calculater kata", () => {
     res = add("1\n2,3");
     expect(res).toBe(6);
   });
+
+  test("should support dynamic delimeters ", () => {
+    res = add("//[;][*]\n1;2*3");
+    expect(res).toBe(6);
+  });
 });

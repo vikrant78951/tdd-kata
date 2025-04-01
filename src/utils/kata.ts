@@ -2,13 +2,21 @@
 
 export function add(numbers: string): number {
   if (numbers === "") return 0;
+  let delimiters = [",", "\n"];
+  if (numbers.startsWith("//")) {
+    const delimiterLine = numbers.slice(2, numbers.indexOf("\n"));
 
-  const newArray: number[] = numbers.split(/,|\n/).map(Number);
-  console.log(newArray);
+    // extract delimeter
+    delimiters = delimiterLine.split(/\[([^\]]+)]/).filter(Boolean);
+    numbers = numbers.slice(numbers.indexOf("\n") + 1);
+  }
 
-  const sum: number = newArray.reduce((sum, num) => sum + num, 0);
-  console.log(sum);
+  const delimiterRegex = new RegExp(`[${delimiters.join("")}]`, "g");
+
+  const numArray = numbers.split(delimiterRegex).map(Number);
+
+  const sum: number = numArray.reduce((sum, num) => sum + num, 0);
   return sum;
 }
 
-add("1,2,3");
+add("//[;][*]\n1;2*3");
