@@ -20,7 +20,6 @@ app.post("/calculate", (req: Request, res: Response): void => {
   const { calculate } = req.body;
 
   const decodedCalculation = calculate.replace(/\\n/g, "\n");
-  console.log("Decoded Calculation:", decodedCalculation);
   if (!decodedCalculation) {
     res.status(400).json({ success: false, error: "Input is required." });
     return;
