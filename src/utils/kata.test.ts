@@ -40,7 +40,7 @@ describe("test string calculater kata", () => {
 
   test("throws an error for multiple negative numbers", () => {
     expect(() => add("-1,-2,-3")).toThrow(
-      "Negative numbers are not allowed: -1, -2, -3",
+      "Negative numbers are not allowed: -1,-2,-3",
     );
   });
 
