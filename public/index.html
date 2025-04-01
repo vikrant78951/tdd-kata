@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Calculator TDD Kata</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
+  <body>
+    <section>
+      <header>
+        <h1>String Calculator TDD Kata</h1>
+        <p>Enter a comma-separated string of numbers to calculate the sum.</p>
+      </header>
+      <form id="calcForm">
+        <input
+          type="text"
+          id="calcInput"
+          name="calculate"
+          placeholder="e.g. 1,2,3"
+          required
+        />
+        <button type="submit">Calculate</button>
+      </form>
+
+      <h2>
+        Result:
+        <span id="result"></span>
+      </h2>
+    </section>
+
+    <script>
+      document
+        .getElementById("calcForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const input = document.getElementById("calcInput").value;
+          console.log("Before sending:", input);
+
+          const response = await fetch("/calculate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ calculate: input }),
+          });
+
+          const data = await response.json();
+          document.getElementById("result").textContent =
+            data.result || data.error;
+        });
+    </script>
+  </body>
+</html>

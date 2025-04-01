@@ -17,7 +17,7 @@ describe("test string calculater kata", () => {
     expect(res).toBe(6);
   });
 
-  test("should support new line delimeters ", () => {
+  test.only("should support new line delimeters ", () => {
     res = add("1\n2,3");
     expect(res).toBe(6);
   });

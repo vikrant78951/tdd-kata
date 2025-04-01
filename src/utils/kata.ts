@@ -16,7 +16,12 @@ export function add(numbers: string): number {
 
   const delimiterRegex = new RegExp(`[${delimiters.join("")}]`, "g");
 
-  let numArray = numbers.split(delimiterRegex).map(Number);
+  let numArray = numbers.split(delimiterRegex).map((num) => {
+    if (!/^-?\d+$/.test(num.trim())) {
+      throw new Error(`Invalid input: ${num}`);
+    }
+    return parseInt(num.trim(), 10);
+  });
 
   // validate negative  number
   const negatives = numArray.filter((num) => num < 0);
@@ -37,5 +42,3 @@ export function getCalledCount(): number {
 export function resetCallCount() {
   callCount = 0;
 }
-
-add("1,2,1000");
