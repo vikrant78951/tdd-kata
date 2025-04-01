@@ -15,6 +15,14 @@ export function add(numbers: string): number {
 
   const numArray = numbers.split(delimiterRegex).map(Number);
 
+  // validate negative  number
+  const negatives = numArray.filter((num) => num < 0);
+  if (negatives.length > 0) {
+    throw new Error(
+      `Negative numbers are not allowed: ${negatives.join(", ")}`,
+    );
+  }
+
   const sum: number = numArray.reduce((sum, num) => sum + num, 0);
   return sum;
 }

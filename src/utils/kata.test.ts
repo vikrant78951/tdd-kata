@@ -22,4 +22,16 @@ describe("test string calculater kata", () => {
     res = add("//[;][*]\n1;2*3");
     expect(res).toBe(6);
   });
+
+  test.only("should throw error for negative number ", () => {
+    expect(() => add("//[;][*]\n1;-2*3")).toThrow(
+      "Negative numbers are not allowed: -2",
+    );
+  });
+
+  test.only("throws an error for multiple negative numbers", () => {
+    expect(() => add("-1,-2,-3")).toThrow(
+      "Negative numbers are not allowed: -1, -2, -3",
+    );
+  });
 });
